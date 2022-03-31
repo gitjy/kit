@@ -14,7 +14,11 @@ class View
 
     static function display($data, $format = 'json', $tpl = '')
     {
-      method_exists('View', $format) && $out = View::$format($data);
+      if ('jsonp' == $format) {
+        $out = array(getCgi('cb', 'cb') . "($json);", 'application/x-javascript');
+      } else{
+         method_exists('View', $format) && $out = View::$format($data);
+      }
       headers_sent() || header('Content-type:' . $out[1] . ';charset=UTF-8;');
       echo $out[0];
     }

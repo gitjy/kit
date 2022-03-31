@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<script type="text/javascript" src="/public/jquery.js"> </script>
+		<script>
+			// GET
+/*$.get('http://cors.com').done(function(data) {
+  console.log(data, 'success');
+  alert(data, 'success');
+});*/
+
+$.ajax({
+  url: 'http://cors.com',
+  data: 'this is data being posted to the server',
+  contentType: 'text/plain',
+  type: 'POST',
+  dataType: 'json'
+}).done(function(data) {
+  console.log(data);
+});
+
+
+// POST
+//跨域请求
+/*$.ajax({
+  url: 'http://frozen-woodland-5503.herokuapp.com/cors.json',
+  data: 'this is data being posted to the server',
+  contentType: 'text/plain',
+  type: 'POST',
+  dataType: 'json'
+}).done(function(data) {
+  console.log(data);
+});*/
+		</script>
+	</head>
+	<body>
+		aaaa
+	</body>
+</html>
+

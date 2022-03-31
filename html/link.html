@@ -5,7 +5,7 @@
 	<script src="public/jquery-1.8.3.min.js" ></script>
 	<script>
 		$(function(){
-			console.log('hello');
+			//console.log('hello');
 			$.ajax({
 				url:'link.php',
 				type:'get',
@@ -15,7 +15,7 @@
 					for(var i=0;i<data.length;i++){
 						info += "<option value='"+data[i].id+"'>"+data[i].name+"</option>";
 					}
-					console.log(info);
+					//console.log(info);
 					$('select[name="province"]').html(info);
 				}
 			});
@@ -27,15 +27,15 @@
 						url:'link.php',
 						type:'get',
 						dataType:'json',
-						data:{id:id},
+						data:{'id':id},
 
 						success:function(data){
-							console.log(data);
+							//console.log(data);
 							info = '<option>请选择</option>';
 							for(var i=0;i<data.length;i++){
 								info += "<option value='"+data[i].id+"'>"+data[i].name+"</option>";
 							}
-							console.log(id,info);
+							//console.log(this);
 							sel.next().html(info);
 						},
 					});

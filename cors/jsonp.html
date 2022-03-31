@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<title>jsonp跨域读取数据js请求</title>
+		<meta charset="utf8" />
+		<script>
+			//js方法1
+			function cackback(data) {
+				//alert(data);
+				console.log(data);
+			}
+			function wap(data) {
+				//alert(data);
+				console.log(data)
+			}
+		</script>
+		<script type="text/javascript" src="http://cors.com/wap.php?cb=wap"></script>
+	</head>
+	<body>
+		<div>json的请求</div>
+	</body>	
+</html>

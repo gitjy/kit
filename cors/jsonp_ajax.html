@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>jsonp跨域读取数据JQuery请求</title>
+		<meta charset="utf8" />
+		<script type="text/javascript" src="/public/jquery.js"> </script>
+		<script>
+			//Jquery实现 JQuery的cackback名字只能是?,随机生成
+			/*$.getJSON("http://cors.com/wap.php?cb=?", function(data) {
+				console.log('JQuery',data);
+           });*/
+
+	$.ajax({
+	  url: 'http://cors.com/wap.php?cb=?',
+	  //type: 'POST',   //指定json或者jsonp后type只能是GET，POST无效
+	  //data: { name: "John", time: "2pm" },  
+	  //data: 'this is data being posted to the server',
+	  //contentType: 'text/plain',
+	  dataType: 'json'
+	}).done(function(data) {
+	  console.log(data);
+	});
+
+		</script>
+	</head>
+	<body>
+		<div>json的请求</div>
+	</body>	
+</html>
