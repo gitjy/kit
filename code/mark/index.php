@@ -40,7 +40,7 @@ for($i = $x;$i< $widthMax;$i++) {
 		//黑色位置填充
 		if (0 == $coverColor) {
 			imagesetpixel($background, $i, $j, $s);	//填充背景
-			//imagesetpixel($img, $i-$x, $j-$y, $bgColor);	//填充滑块
+			imagesetpixel($img, $i-$x, $j-$y, $bgColor);	//填充滑块
 		}
 	}
 }

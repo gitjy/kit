@@ -32,17 +32,14 @@ for ($i=$width_ini; $i < $width_limit; $i++) {
     for ($j=$height_ini; $j < $height_limit; $j++) { 
 
         $color2 = imagecolorat($background, $i, $j);
-        
+
         //判断索引值区分具体的遮盖区域
-        if(imagecolorat($cover, $i-$width_ini, $j-$height_ini) == 0){
-            imagesetpixel($img, $i-$width_ini, $j-$height_ini, $color2);
-        }
-
-
         $color1 = imagecolorat($cover, $i-$width_ini, $j-$height_ini);
+
         $s = imagecolorallocatealpha($background, 192, 192, 192, 45);
         if($color1 == 0){
             imagesetpixel($background,$i,$j,$s);
+            imagesetpixel($img, $i-$width_ini, $j-$height_ini, $color2);
         }
         
     }
