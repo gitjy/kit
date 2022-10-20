@@ -58,6 +58,6 @@ $write->save($file);
 header('Content-Type: application/octet-stream'); 
 header('Content-Disposition: attachment; filename='.$show_name); 
 header('Content-Length: ' . filesize($file)); 
-readfile($file); 
+readfile($file);
 //删除临时文件 
 unlink($file);

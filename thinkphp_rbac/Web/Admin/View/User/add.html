@@ -1,0 +1,36 @@
+
+<div class="pageContent">
+	<form method="post" action="__URL__/insert/navTabId/listuser/callbackType/closeCurrent"  class="pageForm required-validate" 
+		onsubmit="return validateCallback(this,dialogAjaxDone);"><?php  //窗体组件采用这个 iframeCallback(this, navTabAjaxDone); ?>
+		<div class="pageFormContent" layoutH="60">
+			<dl>
+				<dt>账号：</dt>
+				<dd><input type="text" class="required"  style="width:100%" name="username"/></dd>
+			</dl>
+			<dl>
+				<dt>真实姓名：</dt>
+				<dd><input type="text"  style="width:100%" name="name"/></dd>
+			</dl>
+			<dl>
+				<dt>密码：</dt>
+				<dd><input type="password"  style="width:100%" name="userpass"/></dd>
+			</dl>
+			<dl>
+				<dt>重复密码：</dt>
+				<dd><input type="password"  style="width:100%" name="repass"/></dd>
+			</dl>
+			<dl>
+				<dt>aaa：</dt>
+				<dd><input type="text" name="date10" class="date" dateFmt="yyyy-MM-dd HH:mm:ss" readonly="true"/></dd>
+			</dl>
+		</div>
+		
+		<div class="formBar">
+			<ul>
+				<li><div class="buttonActive"><div class="buttonContent"><button type="submit">保存</button></div></div></li>
+				<li><div class="button"><div class="buttonContent"><button type="button" class="close">取消</button></div></div></li>
+			</ul>
+		</div>
+	</form>
+</div>
+

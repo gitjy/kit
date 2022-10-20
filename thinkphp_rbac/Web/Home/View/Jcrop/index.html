@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>无刷新上传加图片裁剪</title>
+		<link rel="stylesheet" href="__PUBLIC__/jcrop_zh/css/common.css" type="text/css" />
+		<link rel="stylesheet" href="__PUBLIC__/jcrop_zh/css/jquery.Jcrop.css" type="text/css" />
+		<script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/jcrop_zh/js/jquery.Jcrop.js"></script>
+        <script type="text/javascript">
+			var picname=null;
+			var cx=0,cy=0,cw=0,ch=0;
+			function doupload(info){
+				if(info=="false"){
+					alert('图片上传失败！');
+					return;
+				}
+				picname = info; //保存图片名称
+				$("<img src='__PUBLIC__/Uploads/"+info+"'/>").Jcrop({onChange:showCoords,onSelect:showCoords}).appendTo("#im");	
+			}
+			
+			//裁剪框的选中和调整大小自动触发此函数
+			function showCoords(obj){
+				//获取裁剪信息：起始坐标和宽、高；
+				cx = obj.x;
+				cy = obj.y;
+				cw = obj.w;
+				ch = obj.h;
+			}
+			
+			//执行裁剪处理
+			function doJcrop(){
+				$.ajax({
+					url:"__URL__/doCrop",
+					type:"post",
+					data:{picname:picname,cx:cx,cy:cy,cw:cw,ch:ch},
+					dataType:'text',
+					success:function(){
+						$("#im").empty();
+						$("<img src='__PUBLIC__/Uploads/"+picname+"?id="+Math.random()+"'/>").Jcrop({onChange:showCoords,onSelect:showCoords}).appendTo("#im");	
+					}
+				});
+			}
+        </script>
+    </head>
+    <body>
+        <h3>无刷新上传加图片裁剪</h3>
+		<iframe name="myform" src="" frameborder="0" style="display:none"></iframe>
+		<form action="__URL__/upload" method="post" target="myform" enctype="multipart/form-data" >
+			图片：<input type="file" name="pic" />
+			<input type="submit" value="提交" >
+		</form>
+		<br/><br/>
+		<div id="im"></div>
+		<button onclick="doJcrop()">确认裁剪</button>
+    </body>
+</html>

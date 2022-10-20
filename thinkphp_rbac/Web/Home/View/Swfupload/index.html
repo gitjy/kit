@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SWFUpload Demos - Application Demo</title>
+<script type="text/javascript" src="__PUBLIC__/swfupload/swfupload.js"></script>
+<script type="text/javascript" src="__PUBLIC__/swfupload/handlers.js"></script>
+<script type="text/javascript">
+		var swfu;
+		window.onload = function () {
+			swfu = new SWFUpload({
+				// Backend Settings
+				upload_url: "__MODULE__/Swfupload/doupload",
+				post_params: { "PHPSESSID": "{session_id()}"}, //定义了一些键/值对，允许在上传每个文件时候捎带地post给服务器
+
+				// File Upload Settings
+				file_size_limit : "1 MB",	// 2MB 特殊值0表示文件大小无限
+				file_types : "*.jpg;*.gif", // 类型
+				file_types_description : "JPG Images",  //设置文件选择对话框中显示给用户的文件描述。
+				file_upload_limit : 0, //设置SWFUpload实例允许上传的最多文件数量
+
+				// 事件处理程序设置，这些函数的定义在handlers.js
+				// 该处理程序不属于SwfUpload但是我的网站和控制
+				// 我的网站到SwfUpload事件的反应。
+				swfupload_preload_handler : preLoad,		//预加载上传处理程序
+				swfupload_load_failed_handler : loadFailed, //当页面不能正常加载flash影片的时候
+				file_queue_error_handler : fileQueueError,			//fileQueueError事件侦听函数(加入文件上传队列错误)
+				file_dialog_complete_handler : fileDialogComplete,  //fileDialogComplete事件侦听函数（加入文件队列完成后）
+				upload_progress_handler : uploadProgress,	//由flash控件定时触发,以达到及时显示上传进度的效果
+				upload_error_handler : uploadError,			//文件失败成功后触发的事件处理函数
+				upload_success_handler : uploadSuccess,		//文件上传成功后触发的事件处理函数
+				upload_complete_handler : uploadComplete, 	//上传（无论成功还是失败）一个后触发的事件处理函数
+
+				// Button Settings
+				button_image_url : "__PUBLIC__/swfupload/images/SmallSpyGlassWithTransperancy_17x18.png",
+				button_placeholder_id : "spanButtonPlaceholder",
+				button_width: 180,
+				button_height: 18,
+				button_text : '<span class="button">选择上传图片<span class="buttonSmall">(2 MB Max)</span></span>',
+				button_text_style : '.button { font-family: Helvetica, Arial, sans-serif; font-size: 12pt; } .buttonSmall { font-size: 10pt; }',
+				button_text_top_padding: 0,
+				button_text_left_padding: 18,
+				button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
+				button_cursor: SWFUpload.CURSOR.HAND,
+				
+				// Flash Settings
+				flash_url : "__PUBLIC__/swfupload/swfupload.swf",
+				flash9_url : "__PUBLIC__/swfupload/swfupload_FP9.swf",
+
+				custom_settings : {
+					upload_target : "divFileProgressContainer"
+				},
+				
+				// Debug Settings
+				debug: false
+			});
+		};
+	</script>
+</head>
+<body>
+<div id="header">
+	<h1 id="logo"><a href="../">SWFUpload</a></h1>
+	<div id="version">v2.5.0</div>
+</div>
+<div id="content">
+	<h2>应用示范</h2>
+	<p>这个例子演示了如何SwfUpload可以表现得像一个Ajax应用。图片上传到SwfUpload和服务器转换为缩略图。
+		然后一些JavaScript，是用来下载并显示缩略图，无需重新加载页面。</p>
+	<form>
+		<div style="width: 180px; height: 18px; border: solid 1px #7FAAFF; background-color: #C5D9FF; padding: 2px;">
+			<span id="spanButtonPlaceholder"></span>
+		</div>
+	</form>
+	
+	<div id="divFileProgressContainer" style="height: 75px;"></div>
+	<div id="thumbnails"></div>
+</div>
+</body>
+</html>
