@@ -9,7 +9,11 @@ include('includecn.php');
  **/
 
 $pdf=new PDF_Chinese();
-$pdf->AddGBFont();
+
+
+$family = 'abc'; //字体名字随便起
+
+$pdf->AddGBFont($family);
 
 
 
@@ -24,10 +28,20 @@ $pdf->AddPage();
 $str = '北京欢迎您';
 $str = iconv("UTF-8","gbk",$str); //将字符转换为GBK字符集
 
-$pdf->SetFont('GB','',20);
+
+$pdf->SetFont($family,'',20);
 $pdf->Cell(0,10,$str,  0, 1);
-$pdf->SetFont('GB','B',20, );
+//不传family,使用上次字体设置
+$pdf->SetFont('','B',20, );
 $pdf->Cell(0,10,$str,  0, 1);
-$pdf->SetFont('GB','I',20 );
+$pdf->SetFont('','I',20 );
 $pdf->Cell(0,10,$str, 0, 1);
-$pdf->Output();
+//下划线
+$pdf->SetFont('','U',20 );
+$pdf->Cell(0,10,$str, 0, 1);
+
+$dest = 'F';
+$filename = 'upload/chinese.pdf';
+
+$dest = 'I';
+$pdf->Output($dest, $filename);
