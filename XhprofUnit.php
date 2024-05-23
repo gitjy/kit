@@ -4,7 +4,7 @@
  *
  * @author Jack.Zhu<25282538@qq.com>
  */
-class Unit
+class XhprofUnit
 {
     /**
      * 分层PHP性能分析工具
@@ -12,17 +12,22 @@ class Unit
      */
     static function xhprof()
     {
-    	$XHPROF_ROOT = __DIR__ . '/xhprof/';
         xhprof_enable(XHPROF_FLAGS_NO_BUILTINS | XHPROF_FLAGS_CPU | XHPROF_FLAGS_MEMORY, array());
-        register_shutdown_function(function () use ($XHPROF_ROOT)  {
+        register_shutdown_function(function () use($XHPROF_ROOT) {
+            //让数据收集程序在后台运行
+             if (function_exists('fastcgi_finish_request')) {
+                 fastcgi_finish_request();
+             }
             $xdata = xhprof_disable();
+            $XHPROF_ROOT = __DIR__ . '/xhprof/';
             include_once  $XHPROF_ROOT . '/xhprof_lib/utils/xhprof_lib.php';
             include_once  $XHPROF_ROOT . '/xhprof_lib/utils/xhprof_runs.php';
             $xruns = new XHprofRuns_Default();
             $name = preg_replace(array("/(\?.*)/", "/[^\w]+/"), array('', '_'), $_SERVER['REQUEST_URI']);
             if (!$name)
                 $name = 'index';
-            $xruns->save_run($xdata, $name);
+            $runId = $xruns->save_run($xdata, $name);
+            echo $runId;
         });
     }
 
@@ -32,10 +37,14 @@ class Unit
      */
     static function xhprofdb()
     {
-    	$XHPROF_ROOT = __DIR__ . '/xhprofdb';
         xhprof_enable(XHPROF_FLAGS_NO_BUILTINS | XHPROF_FLAGS_CPU | XHPROF_FLAGS_MEMORY, array());
-        register_shutdown_function(function () use ($XHPROF_ROOT) {
+        register_shutdown_function(function () {
+            //让数据收集程序在后台运行
+            if (function_exists('fastcgi_finish_request')) {
+                fastcgi_finish_request();
+            }
             $xdata = xhprof_disable();
+            $XHPROF_ROOT = __DIR__ . '/xhprofdb';
             include_once $XHPROF_ROOT . "/xhprof_lib/config.php";
             include_once  $XHPROF_ROOT . '/xhprof_lib/utils/xhprof_lib.php';
             include_once  $XHPROF_ROOT . '/xhprof_lib/utils/xhprof_runs.php';

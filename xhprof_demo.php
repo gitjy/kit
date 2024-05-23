@@ -3,9 +3,9 @@
 // start profiling
 include 'autoload.php';
 if (isset($_GET['xhprofdb'])) {
-	Unit::xhprofdb();
+	XhprofUnit::xhprofdb();
 } else {
-	Unit::xhprof();
+	XhprofUnit::xhprof();
 }
 
 

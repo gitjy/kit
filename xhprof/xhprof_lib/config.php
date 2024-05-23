@@ -31,7 +31,7 @@ $_xhprof['dot_errfile'] = 'C:\\WINDOWS\\Temp\\xh_dot.err';
 
 //These are good for linux and its derivatives.
 /*
-$_xhprof['dot_binary']  = '/usr/bin/dot';
+$_xhprof['dot_binary']  = '/opt/homebrew/bin/dot';
 $_xhprof['dot_tempdir'] = '/tmp';
 $_xhprof['dot_errfile'] = '/tmp/xh_dot.err';
 */

@@ -107,7 +107,10 @@ function xhprof_generate_image_by_dot($dot_script, $type) {
        2 => array("pipe", "w")
        );
 
-  $cmd = " dot -T".$type;
+  #$cmd = " dot -T".$type;
+  #$cmd = "/opt/homebrew/bin/dot -T" .$type;
+  $cmd = " export LD_LIBRARY_PATH=/opt/homebrew/opt/graphviz/lib && /opt/homebrew/bin/dot -T" .$type;
+
 
   $process = proc_open( $cmd, $descriptorspec, $pipes, sys_get_temp_dir(), array( 'PATH' => getenv( 'PATH' ) ) );
   if (is_resource($process)) {
