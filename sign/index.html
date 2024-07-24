@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .block-input {
+            display: block;
+            margin-bottom: 10px;  /*可选，添加一些下边距以产生视觉效果上的分隔 */
+            padding: 10px; 
+        }
+    </style>
+</head>
+
+<form action="./sign.php" method="post"  style="display: grid; place-items: center; height: 100px;">
+    <input type="input" name="name" placeholder="请输入您的名字" required  class="block-input">
+    <input type="password" name="password" placeholder="请输入您的密码" required class="block-input">
+    <input type="submit" value="提交">
+</form>
+</html>
