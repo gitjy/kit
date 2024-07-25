@@ -1,5 +1,5 @@
 <?php
-
+ini_set('session.gc_maxlifetime', 120);
 $name = $_POST['name'];
 $pass = $_POST['password'];
 // echo $name;
