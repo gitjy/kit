@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>验证码</title>
+    <style></style>
+</head>
+<body>
+    <form action="index.php" method="post" style="display: grid; place-items: center; height: 100px;">
+        <div> 验证码  <input type="text" name="captcha" placeholder="请输入验证码"><input type="submit" value="验证"></div>
+        
+        <img src="./index.php" onclick="this.src='./index.php?random='+Math.random()" style="cursor:pointer;" title="看不清？点击更换验证码" alt="验证码">
+    </form>
+   
+</html>
